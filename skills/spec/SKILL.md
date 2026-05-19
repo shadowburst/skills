@@ -1,9 +1,9 @@
 ---
-name: to-spec
+name: spec
 description: Converts current conversation and repository context into a durable, reviewable feature spec under docs/specs. Use when the user asks to create a spec, feature spec, implementation spec, review contract, or Ralph-loop-ready task/spec document.
 ---
 
-# To Spec
+# Spec
 
 Convert the current conversation and repository context into a single durable **Feature Spec** under `docs/specs`.
 
