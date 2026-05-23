@@ -7,7 +7,7 @@ description: Converts current conversation and repository context into a durable
 
 Convert the current conversation and repository context into a single durable **Feature Spec** under `docs/specs`.
 
-Do not implement the feature. Do not create an OpenSpec change. Do not create a PRD. Do not publish to the issue tracker.
+Do not implement the feature. Do not create a PRD. Do not publish to the issue tracker.
 
 ## Process
 
@@ -29,7 +29,8 @@ Do not implement the feature. Do not create an OpenSpec change. Do not create a 
 3. **Create or update the spec**
    - If creating, use the template below.
    - If updating, read the existing spec first and merge new information into the right sections.
-   - Preserve existing requirements, scenarios, tasks, and boundaries unless the current context clearly supersedes them.
+   - Preserve existing requirements, scenarios, constraints, validation expectations, implementation context, and boundaries unless the current context clearly supersedes them.
+   - Do not add implementation task ledgers or generic review checklists.
    - Summarize what was created or changed.
 
 ## Spec template
@@ -57,12 +58,13 @@ Do not implement the feature. Do not create an OpenSpec change. Do not create a 
 
 - <Stable, review-relevant technical constraint. Omit this section if none are known.>
 
-## Implementation Tasks
+## Implementation Context
 
-- [ ] 1. <First setup or discovery task.>
-  - Covers: Requirement: <name>
-- [ ] 2. <Next task, ordered after prerequisites.>
-- [ ] N. <Final validation or review task using safely discoverable project-specific commands/checks, or generic validation wording.>
+- <Implementation-relevant context from planning, grilling, existing code, rejected approaches, or known risks. Omit this section if none is needed.>
+
+## Validation Expectations
+
+- <Feature-specific validation guidance, such as required commands, testing boundaries, or acceptable manual validation. Omit this section if validation can be derived safely during implementation.>
 
 ## Out of Scope
 
@@ -71,39 +73,28 @@ Do not implement the feature. Do not create an OpenSpec change. Do not create a 
 ## Source Context
 
 - `<path-read-and-materially-used>`
-
-## Review Checklist
-
-- [ ] Implementation satisfies “Requirement: <name>”.
-- [ ] Scenarios under “<name>” are covered by behavior or tests.
-- [ ] Implementation tasks were completed in dependency order.
-- [ ] No out-of-scope behavior was introduced.
-- [ ] Public behavior matches the spec language.
 ```
 
-Omit `## Source Context` if no repository files materially informed the spec. Omit `## Implementation Constraints` only when no stable constraints are known.
+Omit `## Source Context` if no repository files materially informed the spec. Omit `## Implementation Constraints` when no stable constraints are known. Omit `## Implementation Context` when there is no planning context worth preserving. Omit `## Validation Expectations` unless there is feature-specific validation guidance.
 
 ## Quality rules
 
-- Use persisted OpenSpec-style specs: `## Requirements`, `### Requirement: ...`, `#### Scenario: ...`.
-- Never use OpenSpec delta headings such as `ADDED Requirements`, `MODIFIED Requirements`, or `REMOVED Requirements`.
 - Requirement statements use normative `SHALL` language.
 - Scenarios use `WHEN`, `THEN`, and optional `AND` bullets.
-- Specify externally observable behavior; avoid implementation details unless they are stable review constraints.
+- Specify externally observable behavior; avoid implementation details unless they are stable review constraints or important implementation context from planning.
 - Avoid vague acceptance criteria like “works well”, “is robust”, or “handles errors” without concrete scenarios.
-- Include detailed checkbox tasks in the same file.
-- Implementation tasks may include validation-only or review-only tasks when they represent meaningful completion work.
-- Order tasks naturally: prerequisites first, dependent tasks later, verification tasks last.
-- Validation tasks should name the intended confidence outcome and, when safely discoverable, the command/check to use.
-- Prefer the smallest safely discoverable validation commands from project files such as `package.json`, `Justfile`, `Makefile`, `pyproject.toml`, or `flake.nix`; do not invent commands.
+- Do not include a detailed implementation task ledger. The implementation agent should derive its own plan from requirements, scenarios, constraints, and current code.
+- Do not include a generic review checklist. Review agents should check the implementation against requirements, scenarios, constraints, out-of-scope boundaries, and validation evidence.
+- Use `## Implementation Context` only for non-obvious planning context that future implementers need: resolved trade-offs, rejected approaches, migration risks, compatibility constraints, or other durable handoff notes.
+- Use `## Validation Expectations` only for feature-specific guidance. Do not repeat generic testing policy in every spec.
+- When validation guidance is needed, prefer the smallest safely discoverable commands from project files such as `package.json`, `Justfile`, `Makefile`, `pyproject.toml`, or `flake.nix`; do not invent commands.
+- When tests are called for, describe the behavior to validate rather than internal mechanics. Avoid brittle assertions such as incidental CSS classes, HTML tag structure, snapshots, private methods, or internal collaborator call counts unless those details are the public contract.
 - Make `## Out of Scope` explicit. If only a generic boundary is known, use: `Unspecified behavior changes outside this feature.`
-- Make `## Review Checklist` useful for post-implementation review against the spec.
 
 ## Guardrails
 
 - Do not write application code.
-- Do not create files under `openspec/changes`.
 - Do not publish or update issue tracker entries.
 - Do not create PRDs.
-- Do not create a separate task file; tasks belong in the spec file.
+- Do not create a separate task file or task ledger.
 - Do not silently overwrite an existing spec; merge or ask when ambiguous.
