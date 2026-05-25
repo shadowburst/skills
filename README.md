@@ -10,7 +10,7 @@ The skills in this repo are intended to help with recurring development tasks su
 
 - test-driven development
 - codebase architecture improvement
-- specification writing
+- specification planning, writing, and implementation workflows
 - code review
 - diagnosis and debugging
 - skill authoring and setup

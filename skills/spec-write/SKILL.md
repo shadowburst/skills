@@ -1,9 +1,9 @@
 ---
-name: spec
-description: Converts current conversation and repository context into a durable, reviewable feature spec under docs/specs. Use when the user asks to create a spec, feature spec, implementation spec, review contract, or Ralph-loop-ready task/spec document.
+name: spec-write
+description: Converts current conversation and repository context into a durable, reviewable feature spec under docs/specs. Use when the user asks to write, create, or update a Feature Spec, implementation spec, review contract, or Ralph-loop-ready task/spec document.
 ---
 
-# Spec
+# Spec Write
 
 Convert the current conversation and repository context into a single durable **Feature Spec** under `docs/specs`.
 
