@@ -14,7 +14,7 @@ Create a review-ready GitHub pull request for the current branch. Package the br
 - Confirm the current directory is a git repository.
 - Determine the current branch with `git branch --show-current`.
 - Refuse to create a PR from the base branch itself.
-- Check for uncommitted changes. If present, stop and ask the user to commit/stash them unless they only want a draft title/body.
+- Check for uncommitted changes. If present, briefly note that they will be ignored and continue; PR context must come only from committed branch state.
 - Verify the remote is GitHub. If the remote is not GitHub, do not attempt creation; produce a complete PR title/body draft and explain that automatic creation currently requires a GitHub remote.
 
 ### 2. Determine the base branch
@@ -39,7 +39,7 @@ Report the chosen base. Ask only if it cannot be determined safely.
 
 ### 4. Gather PR context
 
-Capture:
+Capture committed branch context only:
 
 - Diff against the base using `git diff <base>...HEAD`.
 - Commit list using `git log <base>..HEAD --oneline`.
@@ -92,10 +92,6 @@ Use this reviewer-oriented structure:
 
 - <Spec requirement or inferred requirement>
 
-## Validation
-
-- <Command/check run and result, or "Not run: <reason>">
-
 ## Review Notes
 
 - <Known tradeoffs, risky areas, migration notes, or "None">
@@ -107,16 +103,7 @@ Use this reviewer-oriented structure:
 
 Add optional sections only when relevant: `## Out of Scope`, `## Screenshots`, `## Follow-ups`.
 
-### 7. Validation evidence
-
-- Use validation evidence already provided in the conversation when available.
-- Discover likely commands from `package.json`, `Makefile`, `Justfile`, `pyproject.toml`, `Cargo.toml`, `go.mod`, and `flake.nix`.
-- Run only clearly safe, standard checks when obvious.
-- Ask before running expensive or ambiguous commands.
-- If nothing is run, state `Not run` with a short reason.
-- Never invent validation claims.
-
-### 8. Confirm and create
+### 7. Confirm and create
 
 Show the resolved base branch, linked spec, title, and full body draft. Ask for explicit confirmation before running `gh pr create` unless the user explicitly asked to create without confirmation.
 
