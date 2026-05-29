@@ -6,14 +6,15 @@ These skills are based on Matt Pocock's skills repository, with modifications to
 
 ## Purpose
 
-The skills in this repo are intended to help with recurring development tasks such as:
+The main development workflow is intentionally small:
 
-- test-driven development
-- codebase architecture improvement
-- specification planning, writing, and implementation workflows
-- code review
-- diagnosis and debugging
-- skill authoring and setup
+1. `grill-with-docs` — sharpen the feature or fix against project language and docs.
+2. `spec` — optionally write a durable spec, review it, and commit it.
+3. `implement` — gather context, plan, use TDD when useful, implement, validate, and run a thermos-style review/fix loop.
+4. `commit` — create reviewable Conventional Commits.
+5. `pr` — optionally prepare or create a pull request.
+
+Other skills are helpers for focused tasks such as diagnosis, refactoring, test-driven development, architecture improvement, skill authoring, and thermos-style review.
 
 ## Attribution
 

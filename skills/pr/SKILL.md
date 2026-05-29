@@ -5,7 +5,7 @@ description: Creates a GitHub pull request for the current branch onto the base 
 
 # PR
 
-Create a review-ready GitHub pull request for the current branch. Package the branch for review; do not perform a full code review. Use the existing `review` skill when the user asks for review before PR creation.
+Create a review-ready GitHub pull request for the current branch. Package the branch for review; do not perform a full code review. Use `thermos` when the user asks for review before PR creation.
 
 ## Process
 
